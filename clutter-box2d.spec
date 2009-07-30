@@ -1,23 +1,37 @@
+%define major 0
+%define api 0.10
+%define clutterapi 1.0
+%define libname %mklibname %name _%api %major
+%define develname %mklibname -d %name _%api
 Name:           clutter-box2d
-Version:        0.8.2
+Version:        0.10.0
 Release:        %mkrel 1
 Summary:        Glue layer between clutter and box2d
-Group:          Development/C
+Group:          Graphics
 License:        LGPLv2+
 URL:            http://www.clutter-project.org
-Source0:        http://www.clutter-project.org/sources/%{name}/0.8/%{name}-%{version}.tar.bz2
+Source0:        http://www.clutter-project.org/sources/%{name}/%api/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires:  clutter-devel >= 0.8.0
+BuildRequires:  clutter-devel >= 1.0
+BuildRequires:  gobject-introspection-devel gir-repository
 
 %description
 This allows clutter to be embedded in cairo applications. 
 
-%package devel
+%package -n %libname
+Summary:       Glue layer between clutter and box2d
+Group:         System/Libraries
+
+%description -n %libname
+This allows clutter to be embedded in cairo applications. 
+
+%package -n %develname
 Summary:        Clutter-box2d development environment
 Group:          Development/C
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{libname} = %{version}-%{release}
+Provides:	%name-%devel = %version-%release
 
-%description devel
+%description -n %develname
 Header files and libraries for building a extension library for the
 clutter-box2d
 
@@ -37,21 +51,18 @@ rm -f %buildroot%{_libdir}/*.la
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%if %mdkversion < 200900
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-%endif
-
-%files
+%files -n %libname
 %defattr(-,root,root,-)
-%doc AUTHORS ChangeLog COPYING README
-%{_libdir}/libclutter-box2d-0.8.so.0
-%{_libdir}/libclutter-box2d-0.8.so.0.*
+%doc AUTHORS README
+%{_libdir}/libclutter-box2d-%api.so.%{major}*
+
+%files -n %develname
+%defattr(-,root,root,-)
 %doc %{_datadir}/gtk-doc/html/clutter-box2d
+%{_libdir}/pkgconfig/clutter-box2d-%api.pc
+%{_libdir}/libclutter-box2d-%api.so
+%{_includedir}/clutter-%clutterapi/clutter-box2d
+%_libdir/girepository-1.0/ClutterBox2D-%api.typelib
+%_datadir/gir-1.0/ClutterBox2D-%api.gir
 
-%files devel
-%defattr(-,root,root,-)
-%{_libdir}/pkgconfig/clutter-box2d-0.8.pc
-%{_libdir}/libclutter-box2d-0.8.so
-%{_includedir}/clutter-0.8/clutter-box2d
 
