@@ -5,7 +5,7 @@
 %define develname %mklibname -d %name _%api
 Name:           clutter-box2d
 Version:        0.10.0
-Release:        %mkrel 2
+Release:        %mkrel 3
 Summary:        Glue layer between clutter and box2d
 Group:          Graphics
 License:        LGPLv2+
@@ -55,6 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc AUTHORS README
 %{_libdir}/libclutter-box2d-%api.so.%{major}*
+%_libdir/girepository-1.0/ClutterBox2D-%api.typelib
 
 %files -n %develname
 %defattr(-,root,root,-)
@@ -62,7 +63,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/clutter-box2d-%api.pc
 %{_libdir}/libclutter-box2d-%api.so
 %{_includedir}/clutter-%clutterapi/clutter-box2d
-%_libdir/girepository-1.0/ClutterBox2D-%api.typelib
 %_datadir/gir-1.0/ClutterBox2D-%api.gir
 
 
