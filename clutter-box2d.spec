@@ -5,7 +5,7 @@
 %define develname %mklibname -d %name _%api
 Name:           clutter-box2d
 Version:        0.10.0
-Release:        %mkrel 3
+Release:        %mkrel 4
 Summary:        Glue layer between clutter and box2d
 Group:          Graphics
 License:        LGPLv2+
@@ -29,7 +29,7 @@ This allows clutter to be embedded in cairo applications.
 Summary:        Clutter-box2d development environment
 Group:          Development/C
 Requires:       %{libname} = %{version}-%{release}
-Provides:	%name-%devel = %version-%release
+Provides:	%name-devel = %version-%release
 
 %description -n %develname
 Header files and libraries for building a extension library for the
