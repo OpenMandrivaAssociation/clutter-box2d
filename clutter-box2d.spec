@@ -11,6 +11,7 @@ Group:          Graphics
 License:        LGPLv2+
 URL:            http://www.clutter-project.org
 Source0:        http://www.clutter-project.org/sources/%{name}/%api/%{name}-%{version}.tar.bz2
+Patch: clutter-box2d-0.10.0-new-gobject-introspection.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  clutter-devel >= 1.0
 BuildRequires:  gobject-introspection-devel gir-repository
@@ -37,6 +38,8 @@ clutter-box2d
 
 %prep
 %setup -q
+%patch -p1
+autoreconf -fi
 
 %build
 %configure2_5x
