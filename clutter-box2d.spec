@@ -5,7 +5,7 @@
 %define develname %mklibname -d %name _%api
 Name:           clutter-box2d
 Version:        0.10.0
-Release:        %mkrel 6
+Release:        %mkrel 7
 Summary:        Glue layer between clutter and box2d
 Group:          Graphics
 License:        LGPLv2+
