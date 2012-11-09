@@ -1,0 +1,32 @@
+diff -p -up clutter-box2d-0.10.0/clutter-box2d/Makefile.am.new-gobject-introspection clutter-box2d-0.10.0/clutter-box2d/Makefile.am
+--- clutter-box2d-0.10.0/clutter-box2d/Makefile.am.new-gobject-introspection	2009-07-29 17:12:34.000000000 +0200
++++ clutter-box2d-0.10.0/clutter-box2d/Makefile.am	2009-08-18 10:27:12.000000000 +0200
+@@ -46,7 +46,7 @@ ClutterBox2D-@CLUTTER_BOX2D_API_VERSION@
+ 		--namespace ClutterBox2D --nsversion=@CLUTTER_BOX2D_API_VERSION@ \
+ 		--add-include-path=$(srcdir) --add-include=path=. \
+ 		--include=Clutter-1.0 \
+-		--library=clutter-box2d-@CLUTTER_BOX2D_API_VERSION@ \
++		--library=libclutter-box2d-@CLUTTER_BOX2D_API_VERSION@.la \
+ 		--libtool="$(top_builddir)/libtool" \
+ 		--output $@ \
+ 		--pkg gobject-2.0 \
+@@ -66,6 +66,7 @@ typelibsdir = $(libdir)/girepository-1.0
+ typelibs_DATA = $(BUILT_GIRSOURCES:.gir=.typelib)
+ 
+ %.typelib: %.gir $(INTROSPECTION_COMPILER)
++	LD_LIBRARY_PATH=.libs$${LD_LIBRARY_PATH:+:$$LD_LIBRARY_PATH} \
+ 	$(QUIET_GEN)$(DEBUG) $(INTROSPECTION_COMPILER) --includedir=$(srcdir) --includedir=. $(INTROSPECTION_COMPILER_OPTS) $< -o $(builddir)/$(@F)
+ 
+ CLEANFILES=
+diff -p -up clutter-box2d-0.10.0/configure.ac.new-gobject-introspection clutter-box2d-0.10.0/configure.ac
+--- clutter-box2d-0.10.0/configure.ac.new-gobject-introspection	2009-07-29 17:09:13.000000000 +0200
++++ clutter-box2d-0.10.0/configure.ac	2009-08-18 10:26:26.000000000 +0200
+@@ -99,7 +99,7 @@ GTK_DOC_CHECK([1.8])
+ 
+ dnl ========================================================================
+ 
+-GOBJECT_INTROSPECTION_CHECK([0.6.3])
++GOBJECT_INTROSPECTION_CHECK([0.6.4])
+ 
+ AC_CONFIG_FILES([
+     Makefile
