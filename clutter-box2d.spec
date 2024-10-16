@@ -9,7 +9,7 @@ Release:        %mkrel 8
 Summary:        Glue layer between clutter and box2d
 Group:          Graphics
 License:        LGPLv2+
-URL:            http://www.clutter-project.org
+URL:            https://www.clutter-project.org
 Source0:        http://www.clutter-project.org/sources/%{name}/%api/%{name}-%{version}.tar.bz2
 Patch: clutter-box2d-0.10.0-new-gobject-introspection.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
