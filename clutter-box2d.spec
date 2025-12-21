@@ -13,6 +13,11 @@ URL:            https://www.clutter-project.org
 Source0:        http://www.clutter-project.org/sources/%{name}/%api/%{name}-%{version}.tar.bz2
 Patch: clutter-box2d-0.10.0-new-gobject-introspection.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:  clutter-devel >= 1.0
 BuildRequires:  gobject-introspection-devel gir-repository
 
